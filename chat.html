@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دردشة مع الذكاء الاصطناعي</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .chat-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .chat-box {
+            height: 300px;
+            overflow-y: scroll;
+            margin-bottom: 20px;
+            padding-right: 10px;
+        }
+        .message {
+            margin-bottom: 10px;
+        }
+        .user-message {
+            text-align: right;
+            color: #0044cc;
+        }
+        .ai-message {
+            text-align: left;
+            color: #007f39;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 18%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007f39;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            <!-- الرسائل ستظهر هنا -->
+        </div>
+        <input type="text" id="user-input" placeholder="اكتب هنا...">
+        <button onclick="sendMessage()">إرسال</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById('user-input').value;
+            if (userInput.trim() === "") return;
+
+            // إضافة رسالة المستخدم
+            var chatBox = document.getElementById('chat-box');
+            var userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user-message');
+            userMessage.textContent = userInput;
+            chatBox.appendChild(userMessage);
+
+            // الرد من الذكاء الاصطناعي
+            var aiReply = getAIReply(userInput);
+            var aiMessage = document.createElement('div');
+            aiMessage.classList.add('message', 'ai-message');
+            aiMessage.textContent = aiReply;
+            chatBox.appendChild(aiMessage);
+
+            // مسح المدخل
+            document.getElementById('user-input').value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function getAIReply(userInput) {
+            // ردود الذكاء الاصطناعي بناءً على الكلمات المفتاحية
+            userInput = userInput.toLowerCase(); // تحويل النص إلى حروف صغيرة لسهولة المقارنة
+
+            if (userInput.includes('ازيك')) {
+                return 'أنا بخير، إنت عامل إيه؟';
+            } else if (userInput.includes('إزاي')) {
+                return 'تمام الحمد لله، إنت؟';
+            } else if (userInput.includes('أنت مين')) {
+                return 'أنا بوت دردشة، هنا علشان أساعدك!';
+            } else if (userInput.includes('اسمك إيه')) {
+                return 'أنا اسمي بوت، وأنا هنا علشان أتحدث معاك!';
+            } else if (userInput.includes('أخبارك')) {
+                return 'الحمد لله، كله تمام!';
+            } else if (userInput.includes('كيفك')) {
+                return 'أنا بخير، إنت؟';
+            } else if (userInput.includes('تمام')) {
+                return 'تمام، الحمد لله! إنت عايز تكلم عن إيه؟';
+            } else {
+                return 'مش فاهم سؤالك، قول لي أكتر علشان أقدر أساعدك.';
+            }
+        }
+    </script>
+
+
+</body></html>
